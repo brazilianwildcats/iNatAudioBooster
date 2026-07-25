@@ -1,0 +1,8 @@
+iNat TrailCam Audio Booster
+Copyright (c) 2026 poLoNes
+
+O código do aplicativo pode ser usado, estudado e modificado para fins
+não maliciosos, mantendo os avisos de autoria e de terceiros.
+
+O FFmpeg é um projeto independente e possui sua própria licença. A compilação
+portátil copia os documentos de licença e origem para a pasta LICENSES.
