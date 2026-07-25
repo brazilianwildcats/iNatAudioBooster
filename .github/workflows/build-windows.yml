@@ -1,0 +1,57 @@
+name: Build V02 Portable Windows
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v2.*"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Windows 11 portable
+    runs-on: windows-latest
+
+    steps:
+      - name: Baixar o projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Baixar e validar FFmpeg BtbN
+        run: python scripts/prepare_ffmpeg.py
+
+      - name: Publicar aplicativo self-contained
+        run: >
+          dotnet publish
+          src/iNatTrailCamAudioBooster/iNatTrailCamAudioBooster.csproj
+          --configuration Release
+          --runtime win-x64
+          --self-contained true
+          --output artifacts/publish
+          -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:PublishTrimmed=false
+          -p:DebugType=None
+          -p:DebugSymbols=false
+
+      - name: Montar e validar ZIP portátil
+        run: python scripts/assemble_release.py
+
+      - name: Enviar artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: iNat-TrailCam-Audio-Booster-V02-Portable-win-x64
+          path: artifacts/release/iNat_TrailCam_Audio_Booster_V02_Portable_win-x64.zip
+          if-no-files-found: error
+          compression-level: 0
