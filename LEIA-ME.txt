@@ -1,0 +1,45 @@
+iNat TrailCam Audio Booster — V02.4
+=================================
+
+FINALIDADE
+----------
+Aumentar somente o áudio de vídeos de câmera de trilha, preservando o fluxo
+de vídeo original sem recodificação.
+
+COMO USAR O PACOTE PORTÁTIL
+---------------------------
+1. Extraia o ZIP inteiro.
+2. Abra “iNat TrailCam Audio Booster.exe”.
+3. Arraste arquivos MP4 ou AVI para a janela.
+4. Escolha o ganho.
+5. Clique em INICIAR.
+
+O aplicativo funciona totalmente offline. Ele não baixa programas, não usa
+PowerShell e não exige permissões de administrador.
+
+PROCESSAMENTO
+-------------
+MP4:
+- vídeo: cópia direta, sem recodificação;
+- áudio: AAC a 192 kb/s.
+
+AVI:
+- vídeo: cópia direta, sem recodificação;
+- áudio: MP3 a 192 kb/s.
+
+Ganhos muito altos podem elevar o ruído e fazer o limitador atuar fortemente.
+
+FFMPEG
+------
+O ZIP portátil produzido pelo processo oficial inclui FFmpeg e FFprobe do
+projeto BtbN/FFmpeg-Builds, variante Windows 64-bit LGPL não-shared.
+
+Os arquivos de origem, licença, versão e SHA-256 ficam na pasta LICENSES.
+
+SEGURANÇA
+---------
+O pacote final não contém arquivos .ps1, .bat, .cmd ou download de executáveis
+em tempo de execução. O arquivo SHA256SUMS.txt permite verificar a integridade
+de todo o pacote.
+
+Projeto e desenvolvimento: poLoNes
